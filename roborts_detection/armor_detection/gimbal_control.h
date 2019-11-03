@@ -19,11 +19,10 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
-namespace roborts_detection{
+namespace roborts_detection {
 
 const double PI = 3.1415926535;
 const float GRAVITY = 9.78;
-
 
 /**
  * @brief The class can make a transformation: the 3D position of enemy -->  pitch,yaw angle of gimbal.
@@ -31,8 +30,7 @@ const float GRAVITY = 9.78;
  * TODO: add enemy motion estimation
  */
 
-class GimbalContrl
-{
+class GimbalContrl {
  private:
   /**
    * @brief Calculate the actual y value with air resistance
@@ -41,7 +39,7 @@ class GimbalContrl
    * @param angle Pitch angle
    * @return The actual y value in the gimbal coordinate
    */
-  float BulletModel(float x,float v,float angle);
+  float BulletModel(float x, float v, float angle);
   /**
    * @brief Get the gimbal control angle
    * @param x Distance from enemy(the armor selected to shoot) to gimbal
@@ -49,7 +47,7 @@ class GimbalContrl
    * @param v Projectile velocity
    * @return Gimbal pitch angle
    */
-  float GetPitch(float x,float y,float v);
+  float GetPitch(float x, float y, float v);
 
  public:
   /**
@@ -60,14 +58,14 @@ class GimbalContrl
    * @param pitch Rotate pitch
    * @param yaw Rotate yaw
    */
-  void Init(float x,float y,float z,float pitch,float yaw, float init_v, float init_k);
+  void Init(float x, float y, float z, float pitch, float yaw, float init_v, float init_k);
   /**
    * @brief Get the gimbal control info.
    * @param postion Enemy position(actually it should be the target armor).
    * @param pitch Input and output actual pitch angle
    * @param yaw Input and output actual yaw angle
    */
-  void Transform(cv::Point3f &postion,float &pitch,float &yaw);
+  void Transform(cv::Point3f &postion, float &pitch, float &yaw);
 
  private:
   //! Transformation matrix between camera coordinate system and gimbal coordinate system.

@@ -22,7 +22,7 @@
 
 namespace roborts_detection {
 
-void GimbalContrl::Init(float x,float y,float z,float pitch,float yaw, float init_v, float init_k) {
+void GimbalContrl::Init(float x, float y, float z, float pitch, float yaw, float init_v, float init_k) {
   offset_.x = x;
   offset_.y = y;
   offset_.z = z;
@@ -35,8 +35,8 @@ void GimbalContrl::Init(float x,float y,float z,float pitch,float yaw, float ini
 //air friction is considered
 float GimbalContrl::BulletModel(float x, float v, float angle) { //x:m,v:m/s,angle:rad
   float t, y;
-  t = (float)((exp(init_k_ * x) - 1) / (init_k_ * v * cos(angle)));
-  y = (float)(v * sin(angle) * t - GRAVITY * t * t / 2);
+  t = (float) ((exp(init_k_ * x) - 1) / (init_k_ * v * cos(angle)));
+  y = (float) (v * sin(angle) * t - GRAVITY * t * t / 2);
   return y;
 }
 
@@ -62,9 +62,10 @@ float GimbalContrl::GetPitch(float x, float y, float v) {
 
 void GimbalContrl::Transform(cv::Point3f &postion, float &pitch, float &yaw) {
   pitch =
-      -GetPitch((postion.z + offset_.z) / 100, -(postion.y + offset_.y) / 100, 15) + (float)(offset_pitch_ * 3.1415926535 / 180);
+      -GetPitch((postion.z + offset_.z) / 100, -(postion.y + offset_.y) / 100, 15)
+          + (float) (offset_pitch_ * 3.1415926535 / 180);
   //yaw positive direction :anticlockwise
-  yaw = -(float) (atan2(postion.x + offset_.x, postion.z + offset_.z)) + (float)(offset_yaw_ * 3.1415926535 / 180);
+  yaw = -(float) (atan2(postion.x + offset_.x, postion.z + offset_.z)) + (float) (offset_yaw_ * 3.1415926535 / 180);
 }
 
 } // roborts_detection

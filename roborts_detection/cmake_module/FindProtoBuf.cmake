@@ -1,4 +1,4 @@
-# Finds Google Protocol Buffers library and compilers and extends
+# Finds Google Protocol Buffers library and compihttp://wiki.ros.org/catkin/CMakeLists.txtlers and extends
 # the standard cmake script
 
 find_package(Protobuf REQUIRED)
